@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title_block %}{{ object.title }}{% endblock %}
+
+{% block actions_menu_buttons %}
+  {% if subscription and not readed %}
+  <form class="form" role='form' action="{% url 'post_read' user.pk %}" method="post">
+    {% csrf_token %}
+    <button class="btn btn-default">Mark as read</button>
+  </form>
+  {% endif %}
+{% endblock %}
+
+{% block content_block %}
+    <div>
+        <p>{{ object.user_id }} - {{ object.created_at }}</p>
+        <h2>{{ object.title }}</h2>
+        <p>{{ object.text }}</p>
+    </div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title_block %}list of blogs{% endblock %}
+{% block content_block %}
+  <table class="table table-condensed">
+    {% for user in object_list %}
+    <tr><td><a href="{% url 'blog' user.pk %}">{{ user.email }}</a></td></tr>
+    {% endfor %}
+  </table>
+{% endblock %}

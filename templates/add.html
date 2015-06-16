@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title_block %}Add post{% endblock %}
+{% block content_block %}
+{% load blogs_extras %}
+{% if user.is_authenticated %}
+  <form class="form" role='form' action="{% url 'post_add' %}" method="post">
+    {% csrf_token %}
+    <h3>New post form</h3>
+    {% for field in form %}
+      <div class="form-group">
+      {% if field.errors %}
+      <div class="alert alert-danger">
+      <a href="#" class="close" data-dismiss="alert">&times;</a>
+      {{ field.errors }}</div>
+      {% endif %}
+      {{ field.label_tag }}
+      {{ field|add_attributes:"form-control" }}
+      </div>
+    {% endfor %}
+    <button class="btn btn-default">Submit</button>
+  </form>
+{% else %}
+  <p>You should be logged in to add tickets!</p>
+{% endif %}
+{% endblock %}

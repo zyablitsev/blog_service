@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title_block %}feed{% endblock %}
+
+{% block content_block %}
+  <table class="table table-condensed">
+    {% for post in object_list %}
+    <tr>
+      <td><a href="{% url 'post' post.pk %}">{{ post.title }}</a></td>
+      <td><a href="{% url 'post' post.pk %}">{{ post.text }}</a></td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td>No posts yet</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

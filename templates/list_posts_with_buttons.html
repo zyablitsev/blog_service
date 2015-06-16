@@ -1,0 +1,19 @@
+{% extends 'list_posts.html' %}
+
+{% block title_block %}list of posts{% endblock %}
+
+{% block actions_menu_buttons %}
+  {% if user.id != blog_id %}
+    {% if subscription %}
+    <form class="form" role='form' action="{% url 'blog_unsubscribe' subscription.pk %}" method="post">
+      {% csrf_token %}
+      <button class="btn btn-default">Unsubscribe</button>
+    </form>
+    {% else %}
+    <form class="form" role='form' action="{% url 'blog_subscribe' blog_id %}" method="post">
+      {% csrf_token %}
+      <button class="btn btn-default">Subscribe</button>
+    </form>
+    {% endif %}
+  {% endif %}
+{% endblock %}

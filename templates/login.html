@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title_block %}Login{% endblock %}
+{% block content_block %}
+{% load blogs_extras %}
+{% if form.errors %}
+<div class="alert alert-danger">
+<a href="#" class="close" data-dismiss="alert">&times;</a>
+Your username and password didn't match. Please try again.</div>
+{% endif %}
+
+<form class="form-signin" role="form" action="{% url 'login' %}" method="post" >
+{% csrf_token %}
+<h3>Please sign in</h3>
+<div class="form-group">
+{{ form.username|add_attributes:'class:form-control,placeholder:Username' }}
+</div>
+<div class="form-group">
+{{ form.password|add_attributes:'class:form-control,placeholder:Password' }}
+</div>
+<button class="btn btn-default">Sign in</button>
+</form>
+
+{% endblock %}
